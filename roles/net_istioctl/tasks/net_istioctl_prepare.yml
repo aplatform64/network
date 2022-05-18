@@ -1,0 +1,5 @@
+---
+- name: "Network / IstioCtl / Prepare / Owners"
+  ansible.builtin.include_tasks:
+    file: "{{ 'net_istioctl_prepare_owners.yml' }}"
+...

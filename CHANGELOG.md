@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.0]
+
+### Added
+
+- new role: net_istio
+
 ## [1.2.0]
 
 ### Added
@@ -21,7 +27,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.0.1]
 
-[Unreleased]: https://github.com/serdigital64/aplatform64/compare/1.2.0...HEAD
+[Unreleased]: https://github.com/serdigital64/aplatform64/compare/1.3.0...HEAD
+[1.3.0]: https://github.com/serdigital64/aplatform64/compare/1.2.0...1.3.0
 [1.2.0]: https://github.com/serdigital64/aplatform64/compare/1.1.0...1.2.0
 [1.1.0]: https://github.com/serdigital64/aplatform64/compare/1.0.1...1.1.0
 [1.0.1]: https://github.com/serdigital64/aplatform64/releases/tag/1.0.1

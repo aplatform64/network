@@ -1,0 +1,28 @@
+---
+- name: "Network / IstioCtl / Initialize / Check Platform compatibility"
+  ansible.builtin.assert:
+    quiet: true
+    fail_msg: "Target Platform not supported: {{ ansible_distribution + ansible_distribution_major_version }}"
+    that:
+      - ansible_distribution + ansible_distribution_major_version in net_istioctl_platforms
+
+- name: "Network / IstioCtl / Initialize / Check required parameters"
+  ansible.builtin.assert:
+    quiet: true
+    fail_msg: "required parameters are missing ({{
+      net_istioctl_paths | default('net_istioctl_paths') }},{{ net_istioctl_owners | default('net_istioctl_owners') }})"
+    that:
+      - net_istioctl_paths is defined
+      - net_istioctl_paths['root'] is defined
+      - net_istioctl_paths['root'] | length > 0
+      - net_istioctl_owners is defined
+      - net_istioctl_owners['root'] is defined
+      - net_istioctl_owners['root'] | length > 0
+
+- name: "Network / IstioCtl / Initialize / Resolve prerequisites"
+  ansible.builtin.include_tasks:
+    file: "net_istioctl_prerequisite.yml"
+  when:
+    - net_istioctl['resolve_prereq'] is defined
+    - net_istioctl['resolve_prereq']
+...

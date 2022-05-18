@@ -1,0 +1,59 @@
+---
+# Define supported platforms
+net_istioctl_platforms:
+  - "CentOS8"
+  - "RedHat8"
+  - "AlmaLinux8"
+  - "Rocky8"
+  - "OracleLinux8"
+  - "Ubuntu20"
+  - "Ubuntu21"
+  - "Ubuntu22"
+  - "Fedora33"
+  - "Fedora35"
+  - "Debian10"
+  - "Debian11"
+
+# Multiplatform packages
+net_istioctl_profiles:
+  binary:
+    v1_13: &net_istioctl_profiles_binary_latest
+      supported: true
+      origin: "https://github.com/istio/istio/releases/download/1.13.4"
+      packages:
+        - file: "istio-1.13.4-linux-amd64.tar.gz"
+          uncompress: true
+      paths:
+        - target: "{{ net_istioctl_base['paths']['root'] }}"
+          owner: "{{ net_istioctl_base['access']['user']['root'] }}"
+          group: "{{ net_istioctl_base['access']['group']['root'] }}"
+          mode: "{{ net_istioctl_base['access']['mode']['dir'] }}"
+        - target: "{{ net_istioctl_base['paths']['bin'] }}"
+          owner: "{{ net_istioctl_base['access']['user']['root'] }}"
+          group: "{{ net_istioctl_base['access']['group']['root'] }}"
+          mode: "{{ net_istioctl_base['access']['mode']['dir'] }}"
+      promotion:
+        - source: "istio-1.13.4/bin/istioctl"
+          target: "{{ net_istioctl_base['paths']['bin'] }}"
+          owner: "{{ net_istioctl_base['access']['user']['root'] }}"
+          group: "{{ net_istioctl_base['access']['group']['root'] }}"
+          mode: "{{ net_istioctl_base['access']['mode']['exe'] }}"
+    latest: *net_istioctl_profiles_binary_latest
+
+# Define common paths
+net_istioctl_base:
+  access:
+    user:
+      root: "{{ net_istioctl_owners['root']['user'] }}"
+    group:
+      root: "{{ net_istioctl_owners['root']['group'] }}"
+    mode:
+      dir: "0755"
+      file: "0644"
+      exe: "0755"
+  run:
+    istioctl: "/opt/istioctl/bin/istioctl"
+  paths:
+    root: "{{ net_istioctl_paths['root'] }}"
+    bin: "{{ net_istioctl_paths['root'] + '/bin' }}"
+...

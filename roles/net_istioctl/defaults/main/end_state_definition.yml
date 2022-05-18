@@ -1,0 +1,15 @@
+---
+net_istioctl_application:
+  name: "istioctl"
+  type: "binary"
+  version: "latest"
+  installed: true
+
+net_istioctl_paths:
+  root: "/opt/istioctl"
+
+net_istioctl_owners:
+  root:
+    user: "istioctl"
+    group: "istioctl"
+...
