@@ -1,0 +1,25 @@
+---
+- name: "Network / IstioCtl / Prerequisite / Prepare package managers"
+  vars:
+    sys_repository:
+      prepare: true
+      deploy: true
+      setup: true
+      provision: true
+  ansible.builtin.include_role:
+    name: "serdigital64.system.sys_repository"
+
+- name: "Network / IstioCtl / Prerequisite / Prepare archive manager"
+  vars:
+    bkp_archive:
+      deploy: true
+  ansible.builtin.include_role:
+    name: "serdigital64.backup.bkp_archive"
+
+- name: "Network / IstioCtl / Prerequisite / Prepare package installer"
+  vars:
+    sys_package:
+      prepare: true
+  ansible.builtin.include_role:
+    name: "serdigital64.system.sys_package"
+...

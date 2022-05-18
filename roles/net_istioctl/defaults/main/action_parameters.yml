@@ -1,0 +1,6 @@
+---
+net_istioctl:
+  resolve_prereq: false
+  prepare: false
+  deploy: false
+...

@@ -1,0 +1,23 @@
+---
+- name: "Network / IstioCtl / Initialize"
+  ansible.builtin.include_tasks:
+    file: "net_istioctl_initialize.yml"
+
+- name: "Network / IstioCtl / Prepare"
+  ansible.builtin.include_tasks:
+    file: "net_istioctl_prepare.yml"
+  when:
+    - net_istioctl['prepare'] is defined
+    - net_istioctl['prepare']
+
+- name: "Network / IstioCtl / Deploy"
+  ansible.builtin.include_tasks:
+    file: "net_istioctl_deploy.yml"
+  when:
+    - net_istioctl['deploy'] is defined
+    - net_istioctl['deploy']
+
+- name: "Network / IstioCtl / Finalize"
+  ansible.builtin.include_tasks:
+    file: "net_istioctl_finalize.yml"
+...

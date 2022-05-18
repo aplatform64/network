@@ -1,0 +1,19 @@
+---
+- name: "Network / IstioCtl / Deploy / Check required parameters"
+  ansible.builtin.assert:
+    fail_msg: "Required end-state parameters are missing ({{ net_istioctl_application | default('net_istioctl_application') }})"
+    quiet: true
+    that:
+      - net_istioctl_application is defined
+      - net_istioctl_application | length > 0
+      - net_istioctl_application['name'] is defined
+      - net_istioctl_application['type'] is defined
+      - net_istioctl_application['version'] is defined
+      - net_istioctl_application['installed'] is defined
+
+- name: "Network / IstioCtl / Deploy / Package"
+  ansible.builtin.include_tasks:
+    file: "net_istioctl_deploy_package.yml"
+  when:
+    - net_istioctl_application is defined
+...
